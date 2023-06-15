@@ -204,7 +204,42 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-  return `${width} ${height}ss`;
+  let res = '';
+  for (let row = 1; row <= height; row += 1) {
+    for (let col = 1; col <= width; col += 1) {
+      if (row === 1) {
+        if (col === 1) {
+          res += '\u250C';
+        }
+        if (col === width) {
+          res += '\u2510';
+        }
+        if (col !== 1 && col !== width) {
+          res += '\u2500';
+        }
+      }
+      if (row === height) {
+        if (col === 1) {
+          res += '\u2514';
+        }
+        if (col === width) {
+          res += '\u2518';
+        }
+        if (col !== 1 && col !== width) {
+          res += '\u2500';
+        }
+      }
+      if (row !== 1 && row !== height) {
+        if (col === 1 || col === width) {
+          res += '\u2502';
+        } else {
+          res += ' ';
+        }
+      }
+    }
+    res += '\n';
+  }
+  return res;
 }
 
 
